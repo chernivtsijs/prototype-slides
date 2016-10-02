@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>JavaScript. Основы прототипного наследования</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="styles/screen.css">
+</head>
+<body class="list">
+	<!--
+		Debug class on <body> enables
+		cyan grid on slides
+		-->
+	<header class="caption">
+		<h1>JavaScript. Основы прототипного наследования</h1>
+		<p>Денис Завгородний</p>
+	</header>
+    
+    <section class="slide shout"><div>
+		<h2 style="font-size: 100px; line-height: 1.3;"><b>JavaScript</b><br />Основы прототипного наследования</h2>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>[object Object]</h2>
+	</div></section>
+
+	<section class="slide"><div>
+	    <pre>
+	    <code>var a = {}; // Создали пустой объект</code>
+	    <code>// А пустой ли он?</code>
+	    <code>console.log(a); // Object {}</code>
+	    <code>&nbsp;</code>
+	    <code>// Если проинспектировать в Chrome Dev Tools</code>
+	    <code>// Object {}</code>
+	    <code>//   __proto__: Object</code>
+		</pre>
+
+	</div></section>
+
+	<section class="slide"><div>
+		<table>
+			<tr>
+				<td width="50%">
+					<ul>
+					    <li>__defineGetter__</li>
+					    <li>__defineSetter__</li>
+					    <li>__lookupGetter__</li>
+					    <li>__lookupSetter__</li>
+					    <li>constructor</li>
+					    <li>hasOwnProperty</li>
+					    <li>isPrototypeOf</li>
+					</ul>
+				</td>
+				<td width="50%">
+					<pre>
+						<ul>
+						    <li>propertyIsEnumerable</li>
+						    <li>toLocaleString</li>
+						    <li>toString</li>
+						    <li>valueOf</li>
+						    <li>get __proto__</li>
+						    <li>set __proto__</li>
+						</ul>
+					</pre>
+				</td>
+			</tr>
+		</table>
+	    
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>[[Prototype]]</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>У объектов есть прототип</h2>
+		<ul>
+			<li>Объект "наследует" от прототипа свойства и методы</li>
+			<li>Объекты передаются (связываются) "по ссылке"</li>
+			<li>Объекты можно объединять в цепочки через прототипы</li>
+			<li>Связь происходит через свойство [[Prototype]]</li>
+		</ul>
+	</div></section>
+
+    <section class="slide"><div>
+    	<table>
+    		<tr>
+    			<td>
+    				<h2>Object Человек</h2>
+					<ul>
+						<li>голова: 1</li>
+						<li>шея: 1</li>
+						<li>туловище: 1</li>
+						<li>рука: 2</li>
+						<li>нога: 2</li>
+					</ul>
+    			</td>
+    			<td>&nbsp;</td>
+    		</tr>
+    	</table>
+	</div></section>	
+
+	<section class="slide"><div>
+    	<table>
+    		<tr>
+    			<td>
+    				<h2>Object Человек</h2>
+					<ul>
+						<li>голова: 1</li>
+						<li>шея: 1</li>
+						<li>туловище: 1</li>
+						<li>рука: 2</li>
+						<li>нога: 2</li>
+					</ul>
+    			</td>
+    			<td>
+    			    <h2>Object Василий</h2>
+					<ul>
+						<li>пол: мужской</li>
+						<li>имя: Василий</li>
+						<li>[[Prototype]]: Object Человек</li>
+					</ul>
+    			</td>
+    		</tr>
+    	</table>
+	</div></section>	
+
+	<section class="slide"><div>
+		<center style="margin: -5% 0 0 0;">
+			<h2>Василий</h2>
+			<img src="images/man.jpg" width="374" height="461">
+		</center>
+	</div></section>
+
+
+	<section class="slide"><div>
+    	<table>
+    		<tr>
+    			<td>
+    				<h2>Object Человек</h2>
+					<ul>
+						<li style="color: #b3b3b3;">голова: 1</li>
+						<li style="color: #b3b3b3;">шея: 1</li>
+						<li style="color: #b3b3b3;">туловище: 1</li>
+						<li>рука: 3</li>
+						<li style="color: #b3b3b3;">нога: 2</li>
+					</ul>
+    			</td>
+    			<td>
+    			    &nbsp;
+    			</td>
+    		</tr>
+    	</table>
+	</div></section>	
+
+	<section class="slide"><div>
+		<center style="margin: -5% 0 0 0;">
+			<h2>Василий</h2>
+			<img src="images/man2.jpg" width="374" height="461">
+		</center>
+	</div></section>
+
+
+	<section class="slide"><div>
+		<h2>Василий</h2>
+	    <pre>
+		    <code>var vasiliy = {</code>
+		    <code>    gender: 'man',</code>
+		    <code>    name: 'Василий',</code>
+		    <code>    __proto__: Object Human,</code>
+		    <code>}</code>
+		</pre>
+
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Человек</h2>
+	    <pre>
+		    <code>var Human = {</code>
+		    <code>    head: 1,</code>
+		    <code>    neck: 1,</code>
+		    <code>    body: 1,</code>
+		    <code>    arm: 3,</code>
+		    <code>    leg: 2,</code>
+		    <code>}</code>
+		</pre>
+
+	</div></section>
+
+	<section class="slide"><div>
+	    <pre>
+		    <code>console.log(vasiliy.arm); // 3</code>
+		    <code>Human.leg = 4;</code>
+		    <code>console.log(vasiliy.leg); // 4</code>
+		    <code>vasiliy.arm = 2;</code>
+		    <code>vasiliy.leg = 2;</code>
+		    <code>console.log(vasiliy.arm); // 2</code>
+		    <code>console.log(vasiliy.leg); // 2</code>
+		    <code>Human.leg = 5;</code>
+		    <code>console.log(vasiliy.leg); // 2</code>
+		</pre>
+
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Prototype Lookup</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<table style="table-layout: fixed;">
+			<tr>
+				<td width="70%">
+					<h2>Василий</h2>
+				    <pre>
+					    <code>var vasiliy = {</code>
+					    <code>    gender: 'man',</code>
+					    <code>    name: 'Василий',</code>
+					    <code>    arm: 2,</code>
+					    <code>    leg: 2,</code>
+					    <code>    __proto__: Object Human,</code>
+					    <code>}</code>
+					</pre>
+				</td>
+				<td width="30%">
+					<h2>Человек</h2>
+				    <pre>
+					    <code>var Human = {</code>
+					    <code>    head: 1,</code>
+					    <code>    neck: 1,</code>
+					    <code>    body: 1,</code>
+					    <code>    arm: 3,</code>
+					    <code>    leg: 2,</code>
+					    <code>}</code>
+					</pre>
+				</td>
+			</tr>
+		</table>
+	</div></section>
+
+	<section class="slide"><div>
+	    <pre>
+		    <code>//Как назначить прототип?</code>
+		    <code>vasiliy.__proto__ = Human;</code>
+		    <code>Human.isPrototypeOf(vasiliy); //true</code>
+		    <code>console.log(vasiliy.age); //undefined</code>
+		    <code>Human.age = 3.2e9;</code>
+		    <code>console.log(vasiliy.age); //3200000000</code>
+		</pre>
+		<center>
+			<h2 class="next" style="color: red;">Не делайте так в реальных проектах</h2>
+		</center>
+	</div></section>
+
+	<section class="slide"><div>
+	    <pre>
+		    <code>//Массив тоже объект</code>
+		    <code>Human.options = [];</code>
+		    <code>console.log(vasiliy.options); //[]</code>
+		    <code>vasiliy.options.push('smart');</code>
+		    <code>console.log(vasiliy.options); //["smart"]</code>
+		    <code class="next" style="color: red;">console.log(Human.options); //["smart"]</code>
+		</pre>
+	</div></section>
+
+
+    
+
+
+
+
+
+	
+
+	
+
+
+	<section class="slide"><div>
+		<table>
+			<tr>
+				<td width="50%" valign="top" style="vertical-align: top; border: 0; background: none;">
+					<img src="images/qr-code.gif" width="80%">
+				</td>
+				<td width="50%" valign="top" style="vertical-align: top; border: 0; background: none;">
+				    <h2 style="margin-top: 0; padding-top: 0;">Спасибо!</h2>
+					<h3>Завгородний Денис</h3>
+					<p>Найти можно в фейсбучике
+						<a href="https://www.facebook.com/denis.zavgorodny">https://www.facebook.com/denis.zavgorodny</a>
+					</p>
+				</td>
+			</tr>
+		</table>
+		
+		
+	</div></section>
+
+
+
+
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower-core/shower.min.js"></script>
+	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
+
+
+<script type='text/javascript' id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.2.1.js'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+
+	
+</body>
+</html>
