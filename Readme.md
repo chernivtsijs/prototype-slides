@@ -1,3 +1,3 @@
-#http://denis-zavgorodny.github.io/regex-slides/
+#http://denis-zavgorodny.github.io/prototype-slides/
 
 Презентация для NodeSchool
