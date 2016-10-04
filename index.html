@@ -12,6 +12,10 @@
 		Debug class on <body> enables
 		cyan grid on slides
 		-->
+	<!--
+	http://javascript.ru/ecma/part8#_Prototype_
+	https://learn.javascript.ru/prototype	
+	-->
 	<header class="caption">
 		<h1>JavaScript. Основы прототипного наследования</h1>
 		<p>Денис Завгородний</p>
@@ -262,6 +266,119 @@
 		    <code class="next" style="color: red;">console.log(Human.options); //["smart"]</code>
 		</pre>
 	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Добавление прототипа</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre>
+			<code>Object.create(proto[, propertiesObject])</code>
+		</pre>
+	    <pre>
+		    <code>//Создать объект с прототипом</code>
+		    <code>var obj = Object.create(null); //или var obj = {};</code>
+		    <code>obj.value = 1;</code>
+		    <code>var other = Object.create(obj);</code>
+		    <code>console.log(other.value); // 1</code>
+		</pre>
+		<h2>ES5 и IE9+ или полифил</h2>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>писать в<br />__proto__<br />плохо?</h2>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>setPrototypeOf<br /><font size="16">ECMAScript 6</font></h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre>
+			<code>Object.setPrototypeOf(obj, prototype);</code>
+		</pre>
+	    <pre>
+		    <code>//Заменить или установить прототип</code>
+		    <code>var obj = Object.create(null);</code>
+		    <code>obj.value = 1;</code>
+		    <code>var other = Object.create(null);</code>
+		    <code>console.log(other.value); // undefined</code>
+		    <code>Object.setPrototypeOf(other, obj);</code>
+		    <code>console.log(other.value); // 1</code>
+		</pre>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Не все можно расширить</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre>
+			<code>Object.isExtensible(obj)</code>
+		</pre>
+	    <pre>
+		    <code>/*Проверим можно ли расширить объект </code>
+		    <code>или сменить ему прототип */</code>
+		    <code>Object.isExtensible(other); // true</code>
+		</pre>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>В ECMAScript 6 объекты можно морозить</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<pre>
+			<code>Object.freeze(obj)</code>
+		</pre>
+	    <pre>
+		    <code>//Заморозим объект </code>
+		    <code>var freeze = Object.freeze(other);</code>
+		</pre>
+		<ul>
+			<li>нельзя добавить свойства</li>
+			<li>нельзя удалить свойства</li>
+			<li>нельзя изменить свойства-данные</li>
+			<li><font color="red">МОЖНО изменить свойства-объекты</font></li>
+		</ul>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Функция<br />конструктор</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>new Function()</h2>
+		<ul>
+			<li>Создается новый пустой объект</li>
+			<li>В this помещается ссылка на этот объект</li>
+			<li>Выполняется тело функции</li>
+			<li><u>Неявно</u> возвращается this</li>
+		</ul>
+	</div></section>
+
+	<section class="slide"><div>
+	    <pre>
+		    <code>function fabric() { // функция-конструктор?</code>
+		    <code>    /** Мы помним, что this магически</code>
+		    <code>    создается и связывается созданным объектом</code>
+		    <code>    в процессе исполнения</code>
+		    <code>    т.е. сначала this = {}</code>
+		    <code>    */</code>
+		    <code>    console.log(this);</code>
+		    <code>}</code>
+		    <code>var obj = new fabric(); // {}</code>
+		</pre>
+	</div></section>
+
+	
+
+
+
+
+		
+
+	
 
 
     
