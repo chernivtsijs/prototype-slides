@@ -361,7 +361,7 @@
 	    <pre>
 		    <code>function fabric() { // функция-конструктор?</code>
 		    <code>    /** Мы помним, что this магически</code>
-		    <code>    создается и связывается созданным объектом</code>
+		    <code>    создается и связывается с созданным объектом</code>
 		    <code>    в процессе исполнения</code>
 		    <code>    т.е. сначала this = {}</code>
 		    <code>    */</code>
@@ -369,6 +369,32 @@
 		    <code>}</code>
 		    <code>var obj = new fabric(); // {}</code>
 		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>А что, если </h2>
+        <pre>
+		    <code>var obj = fabric(); // ???</code>
+		    <div class="next">
+			    <code>// Получим</code>
+			    <code>Window {obj...} // если исполняем в браузере</code>
+			    <code>// глобальный объект</code>
+			</div>
+		</pre>
+		
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>Конструктор с Заглавной буквы</h2>
+	</div></section>
+
+	<section class="slide"><div>
+        <pre>
+		    <code>function Cart() {...}</code>
+		    <code>var userCart = new Cart(); // Экземпляр функции</code>
+		    <code>var userCart = new Cart; // Так, кстати, тоже можно</code>
+		</pre>
+		
 	</div></section>
 
 	
