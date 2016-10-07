@@ -404,10 +404,58 @@
 	</div></section>
 
 	<section class="slide shout"><div>
+		<h2>ECMAScript 6<br />Class</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<table width="100%">
+    		<tr>
+    			<td>
+    				<pre>
+						<code>class Human {</code>
+						<code>  constructor() {</code>
+						<code>    this.head = 1;</code>
+					    <code>    this.neck = 1;</code>
+					    <code>    ...</code>
+						<code>  }</code>
+						<code>  say() {</code>
+						<code>    console.log(this.head);</code>
+						<code>  }</code>
+						<code>}</code>
+					</pre>
+    			</td>
+    			<td>
+    				<pre class="next">
+    					<code>var vasiliy = new Human();</code>
+    					<code>vasiliy = new Human();</code>
+    					<code>vasiliy.say(); // 1</code>
+    				</pre>
+    			</td>
+    		</tr>
+    	</table>
+	</div></section>
+
+	<section class="slide"><div style="padding-top: 30px;">
+		<pre>
+			<code>class Man extend Human {</code>
+			<code>  constructor() {</code>
+			<code>    super();</code>
+			<code>    this.gender = 'man';</code>
+			<code>    say() {</code>
+			<code>      console.log('Im ' + this.gender);</code>
+			<code>    }</code>
+			<code>  }</code>
+			<cde>}</cde>
+			<code>var vasiliy = new Man();</code>
+			<code>vasiliy.say(); // Im man</code>
+		</pre>
+	</div></section>
+
+	<section class="slide shout"><div>
 		<h2>Подведем итоги</h2>
 	</div></section>
 
-	
+
 
 	
 
